@@ -1,0 +1,22 @@
+{
+    "name": "yepsua/menu-bundle",
+    "version": "1.0.0",
+    "description": "An Extension of the KnpMenuBundle",
+    "keywords": ["symfony2","menu","knp","yepsua"],
+    "homepage": "http://www.yepsua.com",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Omar Yepez",
+            "email": "omar.yepez@yepsua.com"
+        }
+    ],
+    "require": {
+        "knplabs/knp-menu-bundle":"dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Yepsua\\MenuBundle": "" }
+    },
+    "target-dir": "Yepsua/MenuBundle"
+}
