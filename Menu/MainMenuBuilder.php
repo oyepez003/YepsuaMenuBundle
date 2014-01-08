@@ -15,7 +15,12 @@ use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class MainMenuBuilder extends ContainerAware
-{
+{    
+    /**
+     * 
+     * @param \Knp\Menu\FactoryInterface $factory
+     * @return type
+     */
     public function build(FactoryInterface $factory)
     {
         $menu = $factory->createItem('root');

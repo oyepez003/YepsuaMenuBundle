@@ -9,11 +9,29 @@
         <parameter key="yepsua.menu.method">configure</parameter>
     </parameters>
     
-    <!--
     <services>
-        <service id="yepsua.menu.test" class="Yepsua\MenuBundle\Menu\MyMenuBuilder">
-            <tag name="kernel.event_listener" event="%yepsua.menu.event%" method="%yepsua.menu.method%" />
+        <service id="yepsua.menu.service" 
+                 class="Yepsua\MenuBundle\Menu\MainMenuService">
+            <argument type="service" id="knp_menu.factory" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
+
+        <service id="yepsua.menu.mainMenu" factory-service="yepsua.menu.service" 
+                 factory-method="configure" class="Knp\Menu\MenuItem" 
+                 scope="request">
+            <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="mainMenu" />
+        </service>
+        
+        <!--
+        <service id="yepsua.menu.test" 
+                 class="Yepsua\MenuBundle\Menu\MyMenuBuilder">
+            <tag name="kernel.event_listener" event="%yepsua.menu.event%" 
+                 method="%yepsua.menu.method%" />
+        </service>
+        -->
+        
     </services>
-    -->
 </container>
