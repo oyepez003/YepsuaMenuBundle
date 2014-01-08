@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="yepsua.menu.event">yepsua.menu.event</parameter>
+        <parameter key="yepsua.menu.method">configure</parameter>
+    </parameters>
+    
+    <!--
+    <services>
+        <service id="yepsua.menu.test" class="Yepsua\MenuBundle\Menu\MyMenuBuilder">
+            <tag name="kernel.event_listener" event="%yepsua.menu.event%" method="%yepsua.menu.method%" />
+        </service>
+    </services>
+    -->
+</container>
