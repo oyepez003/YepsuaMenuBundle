@@ -46,4 +46,12 @@ class ConfigureMenuEvent extends Event
     {
         return $this->menu;
     }
+    
+    public function setFactory($factory) {
+        $this->factory = $factory;
+    }
+
+    public function setMenu($menu) {
+        $this->menu = $menu;
+    }
 }

@@ -1,4 +1,7 @@
 <?php
+
+namespace Yepsua\MenuBundle\Menu\Manager;
+
 /*
  * This file is part of the YepsuaMenu Bundle.
  *
