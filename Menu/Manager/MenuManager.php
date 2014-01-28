@@ -48,14 +48,41 @@ class MenuManager implements MenuManagerInterface{
      *
      * @return \Knp\Menu\ItemInterface
      */
-    public function getItem($name, array $options = array()){
+    public function getItem($name, array $options = array(), $force = false){
         $menu = $this->event->getMenu();
-        //$item = $menu->getChild($name);
-        $item = (is_array($name)) ? $this->searchCascade($name) : $menu->getChild($name);
+        $item = null;
+        
+        if(!$force){
+            $item = (is_array($name)) ? $this->searchCascade($name) : $menu->getChild($name);
+        }
+        
         if($item === null){
+            if(isset($options['icon'])){
+                if(isset($options['label'])){
+                    $options['label'] = $this->getIcon($options['icon'],$options['label']);
+                }else{
+                    $options['label'] = $this->getIcon($options['icon'],$name);
+                }
+                $options['extras']['safe_label'] = true;
+            }
             $item = $this->event->getFactory()->createItem($name, $options);
+            if($item->getUri() === null){
+                $item->setUri('#');
+            }
         }
         return $item;
+    }
+    
+    /**
+     * Get a menu item by name.
+     * Creates a menu item if not exists
+     * @param string $name
+     * @param array  $options
+     *
+     * @return \Knp\Menu\ItemInterface
+     */
+    public function newItem($name, array $options = array()){
+        return $this->getItem($name,$options, true);
     }
     
     /**
@@ -137,6 +164,10 @@ class MenuManager implements MenuManagerInterface{
                 $this->getMenu()->addChild($menu);
             }
         }
+    }
+    
+    public function getIcon($icon, $label = '',$tag = 'i'){
+        return sprintf('<%s class="%s"></%s> %s',$tag,$icon,$tag, $label);
     }
     
     /**
