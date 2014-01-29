@@ -1,6 +1,5 @@
 {
     "name": "yepsua/menu-bundle",
-    "version": "1.0.0",
     "description": "An Extension of the KnpMenuBundle",
     "keywords": ["symfony2","menu","knp","yepsua"],
     "homepage": "http://www.yepsua.com",
