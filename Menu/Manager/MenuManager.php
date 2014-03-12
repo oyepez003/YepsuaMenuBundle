@@ -13,8 +13,9 @@ namespace Yepsua\MenuBundle\Menu\Manager;
 
 use Yepsua\MenuBundle\Event\ConfigureMenuEvent;
 use Knp\Menu\ItemInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class MenuManager implements MenuManagerInterface{
+class MenuManager extends ContainerAware implements MenuManagerInterface{
     /**
      *
      * @var \Yepsua\MenuBundle\Event\ConfigureMenuEvent 
@@ -59,9 +60,9 @@ class MenuManager implements MenuManagerInterface{
         if($item === null){
             if(isset($options['icon'])){
                 if(isset($options['label'])){
-                    $options['label'] = $this->getIcon($options['icon'],$options['label']);
+                    $options['label'] = $this->getIcon($options['icon'],$this->__t($options['label']));
                 }else{
-                    $options['label'] = $this->getIcon($options['icon'],$name);
+                    $options['label'] = $this->getIcon($options['icon'],$this->__t($name));
                 }
                 $options['extras']['safe_label'] = true;
             }
@@ -69,6 +70,7 @@ class MenuManager implements MenuManagerInterface{
             if($item->getUri() === null){
                 $item->setUri('#');
             }
+            $item->setLabel($this->__t($item->getLabel()));
         }
         return $item;
     }
@@ -183,4 +185,16 @@ class MenuManager implements MenuManagerInterface{
     public function getFactory(){
         return $this->event->getFactory();
     } 
+    
+    /**
+     * The Symfony2 tranlator
+     * @return \Symfony\Component\Translation\Translator 
+     */
+    protected function getTranslator(){
+        return $this->container->get('translator');
+    }
+    
+    public function __t($id){
+        return $this->getTranslator()->trans($id,array(),'MenuLabels');
+    }
 }
