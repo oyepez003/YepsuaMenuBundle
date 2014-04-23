@@ -53,4 +53,5 @@ abstract class MenuTree extends ContainerAware{
     protected function getTranslator(){
         return $this->container->get('translator');
     }
+    
 }
