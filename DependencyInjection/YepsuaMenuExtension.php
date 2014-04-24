@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the YepsuaMenu Bundle.
+ * This file is part of the YepsuaMenuBundle.
  *
  * (c) Omar Yepez <omar.yepez@yepsua.com>
  *
